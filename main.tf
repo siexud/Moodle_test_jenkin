@@ -13,12 +13,12 @@ provider "docker" {
 }
 
 resource "docker_image" "moodle" {
-  name = "bitnami/moodle:latest"
+  name = "bitnami/moodle:name"
 }
 
 resource "docker_container" "moodle" {
   name  = var.moodle_name
-  image = docker_image.moodle.latest
+  image = docker_image.moodle.name
 
   env = [
     "MOODLE_DATABASE_TYPE=mysql",
