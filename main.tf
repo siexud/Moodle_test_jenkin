@@ -56,7 +56,7 @@ resource "docker_container" "moodle" {
 
   ports {
     internal = 80
-    external = 8006
+    external = 8080
   }
 
   depends_on = [
