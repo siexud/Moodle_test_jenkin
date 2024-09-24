@@ -1,16 +1,16 @@
 terraform {
   required_providers {
-    docker = {                       # Para este caso este es el proveedor, en este caso Docker
-      source  = "kreuzwerker/docker" # Distribución de docker que se va a utilizar
-      version = "~> 3.0.1"           # Versión que se quiere utilizar o una aproximadamente a la versión 3.0.1
+    docker = {
+      source  = "kreuzwerker/docker"
+      version = "~> 3.0.1"
     }
   }
 }
 
 
 provider "docker" {
-  #host = "tcp://localhost:2375/"  # Ajusta según tu configuración
-  host = "unix:///var/run/docker.sock"
+  host = "tcp://10.68.70.12:2375/"  # Ajusta según tu configuración
+  #host = "unix:///var/run/docker.sock"
 }
 
 resource "docker_image" "moodle" {
