@@ -17,7 +17,7 @@ resource "docker_image" "moodle" {
 
 resource "docker_container" "mariadb" {
   name  = "${var.moodle_name}_db"
-  image = "bitnami/mariadb"
+  image = "bitnami/mariadb:10.6"
 
   env = [
     "MARIADB_ROOT_PASSWORD=root_password",
