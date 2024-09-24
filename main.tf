@@ -16,7 +16,7 @@ resource "docker_network" "moodle_network" {
 }
 
 resource "docker_image" "moodle" {
-  name = "bitnami/moodle:latest"  # Asegúrate de que esta etiqueta sea válida
+  name = "bitnami/moodle:4.2.2"  # Asegúrate de que esta etiqueta sea válida
 }
 
 resource "docker_container" "mariadb" {
