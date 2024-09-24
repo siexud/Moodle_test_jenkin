@@ -37,7 +37,7 @@ resource "docker_container" "moodle" {
   image = docker_image.moodle.name
 
   env = [
-    "MOODLE_DATABASE_TYPE=mysql",
+    "MOODLE_DATABASE_TYPE=mariadb",
     "MOODLE_DATABASE_HOST=${docker_container.mysql.name}",
     "MOODLE_DATABASE_NAME=${var.db_name}",
     "MOODLE_DATABASE_USER=${var.db_user}",
