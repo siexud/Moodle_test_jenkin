@@ -17,7 +17,7 @@ resource "docker_image" "moodle" {
 
 resource "docker_container" "mysql" {
   name  = "${var.moodle_name}_db"
-  image = "mysql:latest"
+  image = "bitnami/mariadb:10.6"
 
   env = [
     "MYSQL_ROOT_PASSWORD=root_password",
@@ -46,7 +46,7 @@ resource "docker_container" "moodle" {
 
   ports {
     internal = 80
-    external = 8080
+    external = 8005
   }
 }
 
