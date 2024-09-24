@@ -15,7 +15,7 @@ resource "docker_image" "moodle" {
   name = "bitnami/moodle:latest"  # Cambiar a "latest" o una versión específica
 }
 
-resource "docker_container" "mariadb" {
+resource "docker_container" "mysql" {
   name  = "${var.moodle_name}_db"
   image = "bitnami/mariadb:10.6"
 
