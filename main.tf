@@ -12,12 +12,12 @@ provider "docker" {
 }
 
 resource "docker_image" "moodle" {
-  name = "bitnami/moodle:latest"  # Cambiar a "latest" o una versión específica
+  name = "bitnami/moodle:latest"  # Asegúrate de que esta etiqueta sea válida
 }
 
-resource "docker_container" "mysql" {
+resource "docker_container" "mariadb" {
   name  = "${var.moodle_name}_db"
-  image = "bitnami/mariadb:10.6"
+  image = "bitnami/mariadb"
 
   env = [
     "MARIADB_ROOT_PASSWORD=root_password",
@@ -38,7 +38,7 @@ resource "docker_container" "moodle" {
 
   env = [
     "MOODLE_DATABASE_TYPE=mariadb",
-    "MOODLE_DATABASE_HOST=${docker_container.mysql.name}",
+    "MOODLE_DATABASE_HOST=${docker_container.mariadb.name}",
     "MOODLE_DATABASE_NAME=${var.db_name}",
     "MOODLE_DATABASE_USER=${var.db_user}",
     "MOODLE_DATABASE_PASSWORD=${var.db_password}",
@@ -46,7 +46,8 @@ resource "docker_container" "moodle" {
 
   ports {
     internal = 80
-    external = 8006
+    external = 8080
   }
 }
+
 
