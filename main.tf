@@ -17,7 +17,7 @@ resource "docker_image" "moodle" {
 
 resource "docker_container" "mysql" {
   name  = "${var.moodle_name}_db"
-  image = "mysql:5.7"
+  image = "mysql:latest"
 
   env = [
     "MYSQL_ROOT_PASSWORD=root_password",
