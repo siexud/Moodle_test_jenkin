@@ -10,6 +10,7 @@ terraform {
 
 provider "docker" {
   #host = "tcp://localhost:2375/"  # Ajusta según tu configuración
+  host = "unix:///var/run/docker.sock"
 }
 
 resource "docker_image" "moodle" {
