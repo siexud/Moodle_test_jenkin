@@ -15,15 +15,15 @@ resource "docker_image" "moodle" {
   name = "bitnami/moodle:latest"  # Cambiar a "latest" o una versión específica
 }
 
-resource "docker_container" "mysql" {
+resource "docker_container" "mariadb" {
   name  = "${var.moodle_name}_db"
   image = "bitnami/mariadb:10.6"
 
   env = [
-    "MYSQL_ROOT_PASSWORD=root_password",
-    "MYSQL_DATABASE=${var.db_name}",
-    "MYSQL_USER=${var.db_user}",
-    "MYSQL_PASSWORD=${var.db_password}",
+    "MARIADB_ROOT_PASSWORD=root_password",
+    "MARIADB_DATABASE=${var.db_name}",
+    "MARIADB_USER=${var.db_user}",
+    "MARIADB_PASSWORD=${var.db_password}",
   ]
 
   ports {
