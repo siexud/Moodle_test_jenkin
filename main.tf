@@ -46,7 +46,7 @@ resource "docker_container" "moodle" {
 
   ports {
     internal = 80
-    external = 8005
+    external = 8006
   }
 }
 
