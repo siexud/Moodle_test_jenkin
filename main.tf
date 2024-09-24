@@ -11,6 +11,10 @@ provider "docker" {
   host = "unix:///var/run/docker.sock"
 }
 
+resource "docker_network" "moodle_network" {
+  name = "moodle_network"
+}
+
 resource "docker_image" "moodle" {
   name = "bitnami/moodle:latest"  # Asegúrate de que esta etiqueta sea válida
 }
@@ -18,6 +22,9 @@ resource "docker_image" "moodle" {
 resource "docker_container" "mariadb" {
   name  = "${var.moodle_name}_db"
   image = "bitnami/mariadb:10.6"
+  networks_advanced {
+    name = docker_network.moodle_network.name
+  }
 
   env = [
     "MARIADB_ROOT_PASSWORD=root_password",
@@ -35,6 +42,9 @@ resource "docker_container" "mariadb" {
 resource "docker_container" "moodle" {
   name  = var.moodle_name
   image = docker_image.moodle.name
+  networks_advanced {
+    name = docker_network.moodle_network.name
+  }
 
   env = [
     "MOODLE_DATABASE_TYPE=mariadb",
@@ -48,6 +58,11 @@ resource "docker_container" "moodle" {
     internal = 80
     external = 8006
   }
+
+  depends_on = [
+    docker_container.mariadb,
+  ]
+
 }
 
 
